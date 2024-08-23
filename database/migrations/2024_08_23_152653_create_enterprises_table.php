@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->foreignIdFor(User::class);
             $table->string('name');
             $table->text('description')->nullable();
-            $table->enum('status', EnterpriseStatusEnum::toArray())->default(EnterpriseStatusEnum::ACTIVE);
+            $table->enum('status', EnterpriseStatusEnum::values())->default(EnterpriseStatusEnum::ACTIVE);
             $table->string('internal_observation')->nullable();
             $table->timestamps();
             $table->softDeletes();

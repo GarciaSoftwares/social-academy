@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\Statuses;
 
 use App\Traits\EnumToArray;
 
-enum EnterpriseStatusEnum: string
+enum StatusEnum: string
 {
     use EnumToArray;
 

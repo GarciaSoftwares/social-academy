@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -42,6 +43,17 @@ use Illuminate\Support\Carbon;
 class RaffleCategory extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    /**
+     * Relationship's with the enterprise.
+     *
+     * @return BelongsTo
+     */
+    public function enterprise(): BelongsTo
+    {
+        return $this->belongsTo(Enterprise::class);
+    }
 
     /**
      * Relationship's with dad category.

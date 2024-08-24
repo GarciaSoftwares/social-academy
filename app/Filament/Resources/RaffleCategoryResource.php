@@ -25,7 +25,7 @@ class RaffleCategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('enterprise_id')
-                    ->relationship('enterprise', 'name', modifyQueryUsing: fn (Builder $query) => $query->where('user_id', auth()->id()))
+                    ->relationship('enterprise', 'name', fn (Builder $query) => $query->where('user_id', auth()->id()))
                     ->required()
                     ->searchable()
                     ->preload(),

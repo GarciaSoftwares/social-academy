@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Statuses\RaffleCategoryStatusEnum;
 use App\Models\Enterprise;
 use App\Models\RaffleCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,34 +23,9 @@ class RaffleCategoryFactory extends Factory
         $name = fake()->name();
 
         return [
-            'enterprise_id' => Enterprise::factory(),
             'name' => fake()->name(),
             'slug' => Str::slug($name)
         ];
-    }
-
-    /**
-     * Define state with dad category.
-     *
-     * @return $this
-     */
-    public function withDad(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'dad_id' => RaffleCategory::factory(),
-        ]);
-    }
-
-    /**
-     * Define state with son category.
-     *
-     * @return $this
-     */
-    public function withSon(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'son_id' => RaffleCategory::factory(),
-        ]);
     }
 
     /**
@@ -57,13 +33,12 @@ class RaffleCategoryFactory extends Factory
      *
      * @return $this
      */
-    public function withFamily(): static
+    public function inactive(): static
     {
         $dad = RaffleCategory::factory()->create();
 
         return $this->state(fn (array $attributes) => [
-            'dad_id' => $dad->id,
-            'son_id' => RaffleCategory::factory()->create(['dad_id' => $dad->id]),
+            'status' => RaffleCategoryStatusEnum::INACTIVE,
         ]);
     }
 }

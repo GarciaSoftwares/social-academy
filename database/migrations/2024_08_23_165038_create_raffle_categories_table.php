@@ -2,7 +2,6 @@
 
 use App\Enums\Statuses\RaffleCategoryStatusEnum;
 use App\Models\Enterprise;
-use App\Models\RaffleCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,18 +15,13 @@ return new class extends Migration {
         Schema::create('raffle_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Enterprise::class)->constrained();
-            $table->foreignIdFor(RaffleCategory::class, 'dad_id')->nullable();
-            $table->foreignIdFor(RaffleCategory::class, 'son_id')->nullable();
 
             $table->string('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->enum('status', RaffleCategoryStatusEnum::values())->default('active');
 
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('dad_id')->references('id')->on('raffle_categories');
-            $table->foreign('son_id')->references('id')->on('raffle_categories');
         });
     }
 

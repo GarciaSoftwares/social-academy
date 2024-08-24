@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Statuses\RaffleCategoryStatusEnum;
 use Database\Factories\RaffleCategoryFactory;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -46,6 +47,11 @@ class RaffleCategory extends Model
     use SoftDeletes;
 
     /**
+     * @inheritdoc
+     */
+    protected $casts = ['status' => RaffleCategoryStatusEnum::class];
+
+    /**
      * Relationship's with the enterprise.
      *
      * @return BelongsTo
@@ -53,25 +59,5 @@ class RaffleCategory extends Model
     public function enterprise(): BelongsTo
     {
         return $this->belongsTo(Enterprise::class);
-    }
-
-    /**
-     * Relationship's with dad category.
-     *
-     * @return BelongsTo
-     */
-    public function dad(): BelongsTo
-    {
-        return $this->belongsTo(RaffleCategory::class, 'dad_id');
-    }
-
-    /**
-     * Relationship's with dad category.
-     *
-     * @return BelongsTo
-     */
-    public function son(): BelongsTo
-    {
-        return $this->belongsTo(RaffleCategory::class, 'son_id');
     }
 }

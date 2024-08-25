@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $enterprise_id
@@ -21,13 +21,15 @@ use Illuminate\Support\Carbon;
  * @property int|null $son_id
  * @property string $name
  * @property string $slug
- * @property string $status
+ * @property RaffleCategoryStatusEnum $status
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string|null $deleted_at
- * @method static RaffleCategoryFactory factory($count = null, $state = [])
+ * @property Carbon|null $deleted_at
+ * @property-read \App\Models\Enterprise $enterprise
+ * @method static \Database\Factories\RaffleCategoryFactory factory($count = null, $state = [])
  * @method static Builder|RaffleCategory newModelQuery()
  * @method static Builder|RaffleCategory newQuery()
+ * @method static Builder|RaffleCategory onlyTrashed()
  * @method static Builder|RaffleCategory query()
  * @method static Builder|RaffleCategory whereCreatedAt($value)
  * @method static Builder|RaffleCategory whereDadId($value)
@@ -39,6 +41,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|RaffleCategory whereSonId($value)
  * @method static Builder|RaffleCategory whereStatus($value)
  * @method static Builder|RaffleCategory whereUpdatedAt($value)
+ * @method static Builder|RaffleCategory withTrashed()
+ * @method static Builder|RaffleCategory withoutTrashed()
  * @mixin Eloquent
  */
 class RaffleCategory extends Model

@@ -308,7 +308,7 @@ return [
     |
     */
     'post_migrate' => [
-         'ide-helper:models -R -W',
+         'ide-helper:models -W',
     ],
 
 ];

@@ -23,6 +23,7 @@ class RaffleCategoryFactory extends Factory
         $name = fake()->name();
 
         return [
+            'enterprise_id' => Enterprise::factory(),
             'name' => fake()->name(),
             'slug' => Str::slug($name)
         ];

@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Traits\EnumToArray;
 
-enum RaffleTotalTicketEnum: int
+enum RaffleTicketQuantityEnum: int
 {
     use EnumToArray;
 

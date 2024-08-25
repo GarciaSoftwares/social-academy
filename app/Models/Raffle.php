@@ -3,17 +3,16 @@
 namespace App\Models;
 
 use App\Enums\RaffleDisplayTicketsEnum;
-use App\Enums\RaffleTotalTicketEnum;
+use App\Enums\RaffleTicketQuantityEnum;
 use App\Enums\Statuses\RaffleStatusEnum;
 use App\Observers\RaffleObserver;
 use Database\Factories\RaffleFactory;
 use Eloquent;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsArrayObject;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
@@ -27,7 +26,7 @@ use Illuminate\Support\Carbon;
  * @property string $description
  * @property string $ticket_price
  * @property string $starting_number
- * @property RaffleTotalTicketEnum $ticket_quantity
+ * @property RaffleTicketQuantityEnum $ticket_quantity
  * @property RaffleStatusEnum $status
  * @property RaffleDisplayTicketsEnum $display_tickets
  * @property int $display_ranking
@@ -75,7 +74,26 @@ class Raffle extends Model
     protected $casts = [
         'theme'           => AsArrayObject::class,
         'data'            => AsArrayObject::class,
-        'ticket_quantity' => RaffleTotalTicketEnum::class,
         'display_tickets' => RaffleDisplayTicketsEnum::class,
     ];
+
+    /**
+     * Relationship's enterprise model.
+     *
+     * @return BelongsTo
+     */
+    public function enterprise(): BelongsTo
+    {
+        return $this->belongsTo(Enterprise::class);
+    }
+
+    /**
+     * Relationship's category model.
+     *
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(RaffleCategory::class, 'raffle_category_id');
+    }
 }

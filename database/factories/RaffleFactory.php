@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\RaffleDisplayTicketsEnum;
-use App\Enums\RaffleTotalTicketEnum;
+use App\Enums\RaffleTicketQuantityEnum;
 use App\Enums\Statuses\RaffleStatusEnum;
 use App\Models\Enterprise;
 use App\Models\Raffle;

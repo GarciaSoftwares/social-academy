@@ -1,7 +1,7 @@
 <?php
 
 use App\Enums\RaffleDisplayTicketsEnum;
-use App\Enums\RaffleTotalTicketEnum;
+use App\Enums\RaffleTicketQuantityEnum;
 use App\Enums\Statuses\RaffleStatusEnum;
 use App\Models\Enterprise;
 use App\Models\RaffleCategory;
@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->text('description');
             $table->decimal('ticket_price');
             $table->string('starting_number')->default("001");
-            $table->integer('ticket_quantity')->default(RaffleTotalTicketEnum::_200_);
+            $table->integer('ticket_quantity')->default(RaffleTicketQuantityEnum::_200_);
             $table->enum('status', RaffleStatusEnum::values())->default(RaffleStatusEnum::PENDING);
             $table->enum('display_tickets', RaffleDisplayTicketsEnum::values())->default(RaffleDisplayTicketsEnum::LIST);
             $table->boolean('display_ranking')->default(false);

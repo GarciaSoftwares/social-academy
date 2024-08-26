@@ -29,10 +29,6 @@ class RaffleCategoryResource extends Resource
                     ->required()
                     ->searchable()
                     ->preload(),
-                Forms\Components\Select::make('dad_id')
-                    ->relationship('dad', 'name'),
-                Forms\Components\Select::make('son_id')
-                    ->relationship('son', 'name'),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -51,12 +47,6 @@ class RaffleCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('enterprise.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('dad.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('son.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')

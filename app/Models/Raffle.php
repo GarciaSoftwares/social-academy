@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- *
+ * 
  *
  * @property int $id
  * @property int $enterprise_id
@@ -62,6 +62,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Raffle whereUpdatedAt($value)
  * @method static Builder|Raffle withTrashed()
  * @method static Builder|Raffle withoutTrashed()
+ * @property-read \App\Models\RaffleCategory $category
+ * @property-read \App\Models\Enterprise $enterprise
  * @mixin Eloquent
  */
 class Raffle extends Model

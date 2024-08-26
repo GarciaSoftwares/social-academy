@@ -15,4 +15,6 @@ enum StatusEnum: string
     case DELETED = 'deleted';
 
     case PENDING = 'pending';
+
+    case PAID = 'paid';
 }

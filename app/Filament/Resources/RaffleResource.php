@@ -80,7 +80,7 @@ class RaffleResource extends Resource
                 Tables\Columns\TextColumn::make('ticket_quantity')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\ToggleColumn::make('status'),
                 Tables\Columns\TextColumn::make('display_tickets'),
                 Tables\Columns\IconColumn::make('display_ranking')
                     ->boolean(),
@@ -142,5 +142,15 @@ class RaffleResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    /**
+     * Label of resource.
+     *
+     * @return string
+     */
+    public static function getModelLabel(): string
+    {
+        return __('Raffles');
     }
 }

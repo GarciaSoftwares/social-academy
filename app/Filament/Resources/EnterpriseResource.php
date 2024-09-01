@@ -101,4 +101,14 @@ class EnterpriseResource extends Resource
                 SoftDeletingScope::class,
             ]);
     }
+
+    /**
+     * Label of resource.
+     *
+     * @return string
+     */
+    public static function getModelLabel(): string
+    {
+        return __('Enterprises');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Forms\Components\Field;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -10,6 +11,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\MaxWidth;
+use Filament\Tables\Columns\Column;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -24,6 +26,15 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->bootUsing(function () {
+                Field::configureUsing(function (Field $field) {
+                    $field->translateLabel();
+                });
+
+                Column::configureUsing(function (Column $column) {
+                    $column->translateLabel();
+                });
+            })
             ->default()
             ->id('admin')
             ->path('admin')

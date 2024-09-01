@@ -25,6 +25,7 @@ class UserResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
+                    ->unique()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
@@ -34,8 +35,8 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
+                    ->hidden()
                     ->maxLength(255)
-                ->hidden('view'),
             ]);
     }
 
@@ -98,5 +99,15 @@ class UserResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    /**
+     * Label of resource.
+     *
+     * @return string
+     */
+    public static function getModelLabel(): string
+    {
+        return __('Users');
     }
 }

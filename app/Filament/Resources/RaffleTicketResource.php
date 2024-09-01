@@ -55,7 +55,7 @@ class RaffleTicketResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('number')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('status')->badge(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -108,5 +108,10 @@ class RaffleTicketResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('Raffle Tickets');
     }
 }
